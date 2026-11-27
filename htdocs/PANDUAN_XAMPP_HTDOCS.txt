@@ -1,0 +1,118 @@
+================================================================================
+PANDUAN LENGKAP PENGOPERASIAN PAKET HTDOCS (XAMPP / LARAGON / WEB HOSTING)
+APLIKASI SIAPGUS - SISTEM APLIKASI GURU SEKOLAH TERPADU
+================================================================================
+
+Paket folder ini dirancang untuk:
+1. XAMPP di Komputer Windows (C:\xampp\htdocs\siapgus\)
+2. Laragon di Komputer Windows (C:\laragon\www\siapgus\)
+3. XAMPP di Apple macOS (/Applications/XAMPP/xamppfiles/htdocs/siapgus/)
+4. Apache Web Server di Linux (/var/www/html/siapgus/)
+5. Akses Jaringan Lokal / LAN Sekolah (http://IP_KOMPUTER_SERVER/siapgus/)
+6. Web Hosting Online / cPanel / VPS (https://rapor.sekolah.sch.id/)
+
+--------------------------------------------------------------------------------
+A. DAFTAR PERANGKAT LENGKAP DI DALAM FOLDER HTDOCS:
+--------------------------------------------------------------------------------
+1. index.php          -> Pintu gerbang utama aplikasi PHP Web Server
+2. index.html         -> Standalone Single Page Application (SPA Modern)
+3. config.php         -> Konfigurasi database MySQL (Host, User, Pass, Database)
+4. install.php        -> Web Setup Wizard (Pemasangan database otomatis via web)
+5. koneksi.php        -> Penghubung PDO MySQL dan auto-schema tabel
+6. api.php            -> REST API sinkronisasi data client ke MySQL & JSON file
+7. database.sql       -> Script SQL lengkap siap impor langsung di phpMyAdmin
+8. export_database.php-> Utilitas download backup SQL langsung dari browser
+9. .htaccess          -> Konfigurasi Apache (mod_rewrite, UTF-8, keamanan)
+10. favicon.ico & .svg-> Logo ikon aplikasi SiApgus di tab browser
+11. data/             -> Folder penyimpanan database offline cadangan (JSON)
+
+--------------------------------------------------------------------------------
+B. LANGKAH-LANGKAH MENJALANKAN DI XAMPP (OFFLINE & LOCALHOST):
+--------------------------------------------------------------------------------
+1. Pastikan Anda sudah menginstal XAMPP (versi PHP 7.4, 8.0, 8.1, atau 8.2).
+2. Buat folder baru bernama 'siapgus' di dalam:
+   C:\xampp\htdocs\siapgus\
+3. Salin/ekstrak seluruh isi file dari paket ini ke dalam folder 'siapgus' tersebut.
+4. Buka aplikasi "XAMPP Control Panel".
+5. Klik tombol [Start] pada modul "Apache" (status berubah jadi hijau).
+6. Klik tombol [Start] pada modul "MySQL" (status berubah jadi hijau).
+7. Buka browser (Chrome, Edge, atau Firefox) lalu kunjungi alamat:
+   http://localhost/siapgus/
+8. Atau jika ingin menjalankan Web Setup Wizard:
+   http://localhost/siapgus/install.php
+
+--------------------------------------------------------------------------------
+C. CARA MENGAKSES ONLINE DI JARINGAN LOKAL / WIFI SEKOLAH (MULTI-USER GURU):
+--------------------------------------------------------------------------------
+Agar seluruh guru dapat mengakses aplikasi SiApgus dari laptop atau HP masing-masing
+tanpa internet (cukup terhubung ke Wi-Fi sekolah yang sama):
+1. Pada komputer server/laptop admin XAMPP, buka Command Prompt (cmd).
+2. Ketik perintah: ipconfig lalu tekan Enter.
+3. Cari "IPv4 Address", misalnya: 192.168.1.50
+4. Pada laptop atau HP guru lain, buka browser dan ketik:
+   http://192.168.1.50/siapgus/
+5. Seluruh guru langsung dapat membuka aplikasi dan mengisi jurnal, nilai, dan absensi!
+
+--------------------------------------------------------------------------------
+D. CARA UPLOAD & MEMBUAT ONLINE DI WEB HOSTING / CPANEL (WEBSITE INTERNET):
+--------------------------------------------------------------------------------
+Agar aplikasi bisa diakses online oleh siapa saja di seluruh dunia dengan domain
+resmi sekolah (misal: https://rapor.sekolah.sch.id atau https://smkkawung.sch.id/rapor):
+
+1. Buat File ZIP:
+   Kompres seluruh file dalam folder ini menjadi 'siapgus.zip'.
+
+2. Upload ke cPanel Hosting:
+   - Login ke cPanel hosting sekolah Anda (misal: https://namasekolah.sch.id:2083).
+   - Buka menu [File Manager] -> masuk ke folder [public_html].
+   - Buat sub-folder 'siapgus' (atau langsung di public_html jika sebagai domain utama).
+   - Klik tombol [Upload], upload file 'siapgus.zip', lalu klik kanan dan [Extract].
+
+3. Buat Database MySQL di cPanel:
+   - Di cPanel, buka menu [MySQL Databases] atau [MySQL Database Wizard].
+   - Buat database baru, contoh: sekolah_siapgus.
+   - Buat user database baru, contoh: sekolah_user dan buat password yang aman.
+   - Tambahkan user ke database tersebut dengan mencentang [ALL PRIVILEGES].
+
+4. Jalankan Web Setup Wizard:
+   - Buka browser dan akses alamat instalasi:
+     https://namasekolah.sch.id/siapgus/install.php
+   - Masukkan Database Host (biasanya localhost), User, Password, dan Nama Database.
+   - Klik [Pasang Database & Tabel Sekarang].
+   - Sistem akan otomatis membuat 8 tabel dan akun administrator.
+
+5. Selesai! Aplikasi siap diakses online kapan saja.
+
+--------------------------------------------------------------------------------
+E. KREDENSIAL LOGIN & PEMULIHAN KATA SANDI:
+--------------------------------------------------------------------------------
+1. Akun Administrator Bawaan:
+   - Username : admin
+   - Password : 123 (atau admin123 jika diinstal via install.php)
+   - Hak Akses: Pengaturan Sekolah, Guru, Siswa, Mapel, Wali Kelas, Backup Data
+
+2. Akun Guru Mata Pelajaran / Wali Kelas Bawaan:
+   - Username : budi (atau guru)
+   - Password : 123 (atau guru123)
+   - Hak Akses: Jurnal KBM, Presensi Siswa & Rekap Bulanan A4, Nilai SAS & Ujian
+                Praktek 0-100, Cetak Rapor Sisipan & Akhir A4 Ber-TTE QR Code.
+
+3. Fitur Lupa Password:
+   - Di halaman login, klik tombol [Lupa Password?].
+   - Pilih peran (Admin atau Guru).
+   - Masukkan email atau username Anda.
+   - Ketik password baru dan simpan. Akun langsung dapat digunakan kembali!
+
+--------------------------------------------------------------------------------
+F. UTILITAS BACKUP DAN EKSPOR DATA:
+--------------------------------------------------------------------------------
+- Untuk mengekspor cadangan database MySQL kapan saja langsung dari browser:
+  Akses URL: http://localhost/siapgus/export_database.php?format=sql
+  File .sql lengkap akan otomatis terunduh ke komputer Anda.
+- Untuk mengunduh cadangan JSON:
+  Akses URL: http://localhost/siapgus/export_database.php?format=json
+
+================================================================================
+SIAPGUS © 2026 - SISTEM APLIKASI GURU SEKOLAH TERPADU
+Solusi Aplikasi Sekolah: Cepat, Ringan, Fleksibel, dan Mandiri!
+================================================================================

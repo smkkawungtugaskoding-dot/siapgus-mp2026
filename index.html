@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SiApgus - Sistem Aplikasi Guru Sekolah</title>
+    <meta name="description" content="Sistem Aplikasi Guru Sekolah terpadu dengan login Admin dan Guru, manajemen data siswa, guru, jurnal pembelajaran, absensi, dan penilaian rapor otomatis." />
+    <meta property="og:title" content="SiApgus - Sistem Aplikasi Guru Sekolah" />
+    <meta property="og:description" content="Sistem Aplikasi Guru Sekolah terpadu dengan login Admin dan Guru, manajemen data siswa, guru, jurnal pembelajaran, absensi, dan penilaian rapor otomatis." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" id="app-favicon" />
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" id="app-favicon-shortcut" />
+    <script>
+      try {
+        var cachedFavicon = localStorage.getItem('siapgus_active_favicon');
+        if (cachedFavicon) {
+          var f = document.getElementById('app-favicon');
+          if (f) { f.href = cachedFavicon; f.type = 'image/png'; }
+          var s = document.getElementById('app-favicon-shortcut');
+          if (s) { s.href = cachedFavicon; s.type = 'image/png'; }
+        }
+      } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-slate-50 text-slate-800 antialiased font-sans">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
